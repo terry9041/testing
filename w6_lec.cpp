@@ -23,7 +23,10 @@ public:
     void print() const;
     void reduce();
     void standardize();
-    
+    double toDouble() const;
+    RationalNumber reciprocal() const;
+        
+
 };
 
 void RationalNumber::rationalNumber()
@@ -88,10 +91,24 @@ void RationalNumber::print() const
         cout << a << '/' << b ;
     }
 
+double RationalNumber::toDouble() const
+{
+    return 1.0*(this->a/this->b);
+}
+
+RationalNumber RationalNumber::reciprocal() const
+{
+    RationalNumber temp;
+    temp.rationalNumber(this ->b,this->a);
+    return temp;
+}
+
 int main() 
 {
     RationalNumber r1;
     r1.setNumerator(3);
     r1.setDenominator(5);
     r1.print();
+    (r1.reciprocal()).print();
+
 }
