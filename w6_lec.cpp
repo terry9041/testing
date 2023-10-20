@@ -6,19 +6,23 @@ class RationalNumber
 private:
     int a,b;
 public:
+    //constructors 
     void rationalNumber();
     void rationalNumber(const int & a, const int &b);
-    void reduce();
-    void standardize();
+    
+
+    //getters
     int getNumerator() const;
-    
     int getDenominator() const;
-   
+
+    // setters
     void setNumerator (const int&numerator);
-    
     void setDenominator (const int&denominator);
     
+    // additional member functions
     void print() const;
+    void reduce();
+    void standardize();
     
 };
 
