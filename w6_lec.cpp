@@ -7,8 +7,8 @@ private:
     int a,b;
 public:
     //constructors 
-    void rationalNumber();
-    void rationalNumber(const int & a, const int &b);
+    RationalNumber();
+    RationalNumber(const int & a, const int &b);
     
 
     //getters
@@ -25,17 +25,35 @@ public:
     void standardize();
     double toDouble() const;
     RationalNumber reciprocal() const;
-        
+    RationalNumber operator+ (const RationalNumber &) const;
+    RationalNumber operator+ (const int &) const;
+    
 
 };
 
-void RationalNumber::rationalNumber()
+RationalNumber RationalNumber::operator+(const RationalNumber &n) const
+{
+    RationalNumber temp;
+    temp.setDenominator(this->b*n.b);
+    temp.setNumerator(this->b*n.a + this->a*n.b);
+    return temp;
+}
+
+RationalNumber RationalNumber::operator+(const int &n) const
+{
+    RationalNumber temp(n,1);
+    return *this + temp;
+}
+
+
+
+ RationalNumber::RationalNumber()
 {
     this-> a = 0;
     this-> b = 1;
 }
 
-void RationalNumber::rationalNumber(const int &a, const int &b)
+ RationalNumber::RationalNumber(const int &a, const int &b)
 {
     this-> a = a;
     this-> b = b != 0? b:1;
@@ -98,8 +116,7 @@ double RationalNumber::toDouble() const
 
 RationalNumber RationalNumber::reciprocal() const
 {
-    RationalNumber temp;
-    temp.rationalNumber(this ->b,this->a);
+    RationalNumber temp (this ->b,this->a);
     return temp;
 }
 
@@ -109,6 +126,6 @@ int main()
     r1.setNumerator(3);
     r1.setDenominator(5);
     r1.print();
-    (r1.reciprocal()).print();
+    (r1+1).print();
 
 }
